@@ -1,1 +1,2 @@
-# panel-console
+# Pterodactyl App Package
+
