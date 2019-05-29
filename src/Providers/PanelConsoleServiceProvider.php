@@ -3,6 +3,7 @@
 namespace YWatchman\Panel_Console\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use YWatchman\Panel_Console\Providers\RouteServiceProvider;
 
 class PanelConsoleServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class PanelConsoleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // 
+        $this->app->register(RouteServiceProvider::class);
     }
 
     /**

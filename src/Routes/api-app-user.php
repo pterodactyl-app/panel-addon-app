@@ -9,6 +9,6 @@ use Pterodactyl\Http\Middleware\Api\Client\AuthenticateClientAccess as Pterodact
 | 
 */
 Route::group(['prefix' => '/console', 'middleware' => [PterodactylAccess::class]], function () {
-    Route::get('/{serverid}')->name('api.app.admin.console');
+    Route::get('/{serverid}')->name('api.app.user.console');
 });
 

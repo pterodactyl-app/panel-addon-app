@@ -7,6 +7,8 @@
 | 
 */
 Route::group(['prefix' => '/console'], function () {
-    Route::get('/{serverid}')->name('api.app.admin.console');
+    Route::get('/{serverid}', function () {
+       return 'test';
+    })->name('api.app.admin.console');
 });
 

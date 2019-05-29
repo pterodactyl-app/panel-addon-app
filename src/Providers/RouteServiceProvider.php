@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'YWatchman\Controllers';
+    protected $namespace = 'YWatchman\Panel_Console\Controllers';
 
     /**
      * Define the routes for the application.
@@ -23,10 +23,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware(['api'])->prefix('/api/app/admin')
             ->namespace($this->namespace . '\Admin\Api')
-            ->group(__DIR__ . 'Routes/api-app-admin.php');
+            ->group(__DIR__ . '/../Routes/api-app-admin.php');
 
         Route::middleware(['client-api'])->prefix('/api/app/client')
             ->namespace($this->namespace . '\Api\User')
-            ->group(__DIR__ . 'Routes/api-app-user.php');
+            ->group(__DIR__ . '/../Routes/api-app-user.php');
     }
 }
