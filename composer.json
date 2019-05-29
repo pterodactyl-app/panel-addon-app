@@ -1,12 +1,19 @@
 {
-    "name": "ywatchman/panel-console",
-    "description": "This a package for Pterodactyl Console API",
     "authors": [
         {
-            "name": "Yvan Watchman",
-            "email": "ik@yvanwatchman.eu"
+            "email": "ik@yvanwatchman.eu",
+            "name": "Yvan Watchman"
         }
     ],
+    "description": "This a package for Pterodactyl Console API",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "YWatchman\\Panel_Console\Providers\PanelConsoleServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
+    "name": "ywatchman/panel-console",
     "require": {}
 }
