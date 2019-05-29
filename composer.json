@@ -1,0 +1,12 @@
+{
+    "name": "ywatchman/panel-console",
+    "description": "This a package for Pterodactyl Console API",
+    "authors": [
+        {
+            "name": "Yvan Watchman",
+            "email": "ik@yvanwatchman.eu"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
