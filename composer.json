@@ -9,7 +9,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "YWatchman\\Panel_Console\Providers\PanelConsoleServiceProvider"
+                "YWatchman\\Panel_Console\\Providers\\PanelConsoleServiceProvider"
             ]
         }
     },
