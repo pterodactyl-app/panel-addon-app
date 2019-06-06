@@ -32,7 +32,8 @@ class ConsoleTransformer extends BaseTransformer
             'external_id' => $server->external_id,
             'identifier' => $server->uuidShort,
             'name' => $server->name,
-            'daemon_key' => $token
+            'daemon_key' => $token,
+            'node' => $server->node->fqdn
         ];
     }
 }
