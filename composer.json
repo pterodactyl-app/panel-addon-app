@@ -2,9 +2,15 @@
     "authors": [
         {
             "email": "ik@yvanwatchman.eu",
-            "name": "Yvan Watchman"
+            "name": "Yvan Watchman",
+            "role": "Developer"
         }
     ],
+    "support": {
+        "chat": "https://discord.gg/Fqpt667"
+    },
+    "version": "0.1",
+    "license": "MIT",
     "description": "This a package for Pterodactyl Console API",
     "extra": {
         "laravel": {
