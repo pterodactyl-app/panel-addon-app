@@ -38,11 +38,20 @@ class LoginController extends Controller
         if($user->use_totp) return $this->failedLoginResponse();
 
         if(password_verify($req->input('password'), $user->password)) {
-            // Todo: TOT
+            // Todo: TOTP
             $keys = $this->apiKeyRepository->getAccountKeys($user);
+            // Todo: create transformer
+            $data = [];
+            foreach ($keys as $key) {
+                $data[] = (object) [
+                    'memo' => $key->memo,
+                    'allowed_ips' => $key->allowed_ips,
+                    'token' => $key->identifier . decrypt($key->token),
+                ];
+            }
             return response()->json([
                  'object' => 'list',
-                 'data' => $keys
+                 'data' => $data
             ]);
         }
 
