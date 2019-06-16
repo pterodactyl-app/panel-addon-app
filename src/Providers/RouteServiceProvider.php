@@ -21,6 +21,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        Route::prefix('/api/app/user')
+            ->namespace($this->namespace . '\Api\User')
+            ->group(__DIR__ . '/../Routes/api-app-auth.php');
         Route::middleware(['api'])->prefix('/api/app/admin')
             ->namespace($this->namespace . '\Api\Admin')
             ->group(__DIR__ . '/../Routes/api-app-admin.php');
