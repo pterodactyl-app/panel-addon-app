@@ -27,13 +27,14 @@ class ConsoleTransformer extends BaseTransformer
     public function transform(Server $server): array
     {
         $token = request()->attributes->get('server_token');
+        $node = $server->node->fqdn . ':' . $server->node->daemonListen;
         return [
             'id' => $server->getKey(),
             'external_id' => $server->external_id,
-            'identifier' => $server->uuidShort,
+            'identifier' => $server->uuid,
             'name' => $server->name,
             'daemon_key' => $token,
-            'node' => $server->node->fqdn
+            'node' => $node
         ];
     }
 }
