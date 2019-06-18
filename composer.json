@@ -21,7 +21,5 @@
     },
     "minimum-stability": "dev",
     "name": "ywatchman/panel-console",
-    "require": {
-        "ywatchman/panel-console": "^1.0"
-    }
+    "require": {}
 }
