@@ -15,11 +15,13 @@
     "extra": {
         "laravel": {
             "providers": [
-                "\\YWatchman\\Panel_Console\\Providers\\PanelConsoleServiceProvider"
+                "YWatchman\\Panel_Console\\Providers\\PanelConsoleServiceProvider"
             ]
         }
     },
     "minimum-stability": "dev",
     "name": "ywatchman/panel-console",
-    "require": {}
+    "require": {
+        "ywatchman/panel-console": "^1.0"
+    }
 }
