@@ -9,7 +9,7 @@
     "support": {
         "chat": "https://discord.gg/Fqpt667"
     },
-    "version": "1.0",
+    "version": "1.0.1",
     "license": "MIT",
     "description": "This a package for Pterodactyl Console API",
     "extra": {
