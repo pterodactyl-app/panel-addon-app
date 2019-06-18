@@ -7,9 +7,6 @@
         }
     ],
     "autoload": {
-        "classmap": [
-            "src"
-        ],
         "psr-4": {
             "YWatchman\\Panel_Console\\": "src/"
         }
@@ -22,7 +19,7 @@
             ]
         }
     },
-    "license": "MIT",
+    "license": "GPL-3.0",
     "minimum-stability": "dev",
     "name": "ywatchman/panel-console",
     "require": {},
