@@ -6,11 +6,14 @@
             "role": "Developer"
         }
     ],
-    "support": {
-        "chat": "https://discord.gg/Fqpt667"
+    "autoload": {
+        "classmap": [
+            "src"
+        ],
+        "psr-4": {
+            "YWatchman\\Panel_Console\\": "src/"
+        }
     },
-    "version": "1.0.1",
-    "license": "MIT",
     "description": "This a package for Pterodactyl Console API",
     "extra": {
         "laravel": {
@@ -19,7 +22,12 @@
             ]
         }
     },
+    "license": "MIT",
     "minimum-stability": "dev",
     "name": "ywatchman/panel-console",
-    "require": {}
+    "require": {},
+    "support": {
+        "chat": "https://discord.gg/Fqpt667"
+    },
+    "version": "1.0.1"
 }
