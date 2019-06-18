@@ -55,10 +55,7 @@ class LoginController extends Controller
             ]);
         }
 
-        return response()->json([
-            'object' => 'list',
-            'data' => []
-        ]);
+        return $this->failedLoginResponse();
 
     }
 
