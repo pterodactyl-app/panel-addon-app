@@ -7,6 +7,8 @@ use Pterodactyl\Http\Controllers\Api\Client\ClientApiController as Controller;
 use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
 use Pterodactyl\Exceptions\Repository\RecordNotFoundException;
 use Pterodactyl\Contracts\Repository\ApiKeyRepositoryInterface;
+use Pterodactyl\Services\Api\KeyCreationService;
+use Pterodactyl\Models\ApiKey;
 
 class LoginController extends Controller
 {
@@ -20,10 +22,16 @@ class LoginController extends Controller
      */
     private $service;
 
-    public function __construct(UserRepositoryInterface $repository, ApiKeyRepositoryInterface $apiKeyRepository) {
+    /**
+     * @var \Pterodactyl\Services\Api\KeyCreationService
+     */
+    private $keyCreationService;
+
+    public function __construct(UserRepositoryInterface $repository, ApiKeyRepositoryInterface $apiKeyRepository, KeyCreationService $keyCreationService) {
         parent::__construct();
         $this->repository = $repository;
         $this->apiKeyRepository = $apiKeyRepository;
+        $this->keyCreationService = $keyCreationService;
     }
 
     public function login(Request $req) {
@@ -49,6 +57,15 @@ class LoginController extends Controller
                     'token' => $key->identifier . decrypt($key->token),
                 ];
             }
+
+            if(!$keys->count()) {
+                $this->keyCreationService->setKeyType(ApiKey::TYPE_ACCOUNT)->handle([
+                    'memo' => 'Pterodactyl App key',
+                    'allowed_ips' => null,
+                    'user_id' => $user->id
+                ]);
+            }
+
             return response()->json([
                  'object' => 'list',
                  'data' => $data
