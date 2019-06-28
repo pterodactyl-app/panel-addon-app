@@ -62,7 +62,7 @@ class FilemanagerController extends Controller
     public function deleteFile(DeleteFileRequest $request) {
         $this->repository
             ->setServer($request->getModel(Server::class))
-            ->deleteFile($request->input('file'));
+            ->deleteFile($request->input('file')); // This function doesn't exist YET!
 
         return response(null, 204);
     }
