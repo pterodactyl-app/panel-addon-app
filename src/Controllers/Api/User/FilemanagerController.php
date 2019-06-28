@@ -45,7 +45,7 @@ class FilemanagerController extends Controller
             return response(null, 404);
         }
 
-        #return $response;
+        return $response;
     }
 
 }
