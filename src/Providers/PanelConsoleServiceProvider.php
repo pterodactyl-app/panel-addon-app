@@ -5,6 +5,9 @@ namespace YWatchman\Panel_Console\Providers;
 use Illuminate\Support\ServiceProvider;
 use YWatchman\Panel_Console\Providers\RouteServiceProvider;
 
+use YWatchman\Panel_Console\Contracts\Daemon\FileRepositoryInterface;
+use YWatchman\Panel_Console\Repositories\Daemon\FileRepository;
+
 class PanelConsoleServiceProvider extends ServiceProvider
 {
     /**
@@ -15,6 +18,7 @@ class PanelConsoleServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->app->bind(FileRepositoryInterface::class, FileRepository::class);
     }
 
     /**
