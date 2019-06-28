@@ -16,8 +16,8 @@ use Pterodactyl\Models\Server;
 class FilemanagerController extends Controller
 {
     /**
-     * @var \Pterodactyl\Contracts\Repository\Daemon\FileRepositoryInterface $repository
-     * @var \Illuminate\Contracts\Config\Repository                          $config
+     * @var \YWatchman\Panel_Console\Contracts\Daemon\FileRepositoryInterface $repository
+     * @var \Illuminate\Contracts\Config\Repository                           $config
      */
     private $repository;
 
