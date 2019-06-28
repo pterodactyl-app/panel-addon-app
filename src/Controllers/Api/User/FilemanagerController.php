@@ -10,6 +10,7 @@ use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use YWatchman\Panel_Console\Requests\ListFilesRequest;
 use YWatchman\Panel_Console\Requests\GetFileContentsRequest;
 use YWatchman\Panel_Console\Requests\WriteFileContentRequest;
+use YWatchman\Panel_Console\Requests\DeleteFileRequest;
 use Pterodactyl\Models\Server;
 
 class FilemanagerController extends Controller
@@ -54,6 +55,14 @@ class FilemanagerController extends Controller
             $request->get('file'),
             $request->getContent()
         );
+
+        return response(null, 204);
+    }
+
+    public function deleteFile(DeleteFileRequest $request) {
+        $this->repository
+            ->setServer($request->getModel(Server::class))
+            ->deleteFile($request->input('file'));
 
         return response(null, 204);
     }
