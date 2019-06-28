@@ -10,6 +10,8 @@ use Pterodactyl\Contracts\Repository\ApiKeyRepositoryInterface;
 use Pterodactyl\Services\Api\KeyCreationService;
 use Pterodactyl\Models\ApiKey;
 
+use YWatchman\Panel_Console\Transformers\LoginTransformer;
+
 class LoginController extends Controller
 {
     /**
@@ -48,15 +50,6 @@ class LoginController extends Controller
         if(password_verify($req->input('password'), $user->password)) {
             // Todo: TOTP
             $keys = $this->apiKeyRepository->getAccountKeys($user);
-            // Todo: create transformer
-            $data = [];
-            foreach ($keys as $key) {
-                $data[] = (object) [
-                    'memo' => $key->memo,
-                    'allowed_ips' => $key->allowed_ips,
-                    'token' => $key->identifier . decrypt($key->token),
-                ];
-            }
 
             if(!$keys->count()) {
                 $this->keyCreationService->setKeyType(ApiKey::TYPE_ACCOUNT)->handle([
@@ -66,15 +59,7 @@ class LoginController extends Controller
                 ]);
             }
 
-            return response()->json([
-                 'object' => 'list',
-                 'data' => $data,
-                 'user' => (object) [
-                     'name' => $user->name_first,
-                     'surname' => $user->name_last,
-                     'email' => $user->email
-                 ]
-            ]);
+            return (new LoginTransformer)->transform($keys, $user);
         }
 
         return $this->failedLoginResponse();
