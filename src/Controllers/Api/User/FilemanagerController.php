@@ -9,6 +9,7 @@ use Pterodactyl\Contracts\Repository\Daemon\FileRepositoryInterface;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use YWatchman\Panel_Console\Requests\ListFilesRequest;
 use YWatchman\Panel_Console\Requests\GetFileContentsRequest;
+use YWatchman\Panel_Console\Requests\WriteFileContentRequest;
 use Pterodactyl\Models\Server;
 
 class FilemanagerController extends Controller
@@ -36,7 +37,7 @@ class FilemanagerController extends Controller
 
     public function getFileContents(GetFileContentsRequest $request) {
 	try {
-            $response =  Response::create(
+            $response = Response::create(
                 $this->repository->setServer($request->getModel(Server::class))->getContent(
                     $request->get('file'), $this->config->get('pterodactyl.files.max_edit_size')
                 )
@@ -46,6 +47,15 @@ class FilemanagerController extends Controller
         }
 
         return $response;
+    }
+
+    public function writeFileContent(WriteFileContentRequest $request) {
+        $this->repository->setServer($request->getModel(Server::class))->putContent(
+            $request->get('file'),
+            $request->getContent()
+        );
+
+        return response(null, 204);
     }
 
 }

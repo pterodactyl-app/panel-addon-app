@@ -15,4 +15,5 @@ Route::group(['prefix' => '/console', 'middleware' => [PterodactylAccess::class]
 Route::group(['prefix' => '/files', 'middleware' => [PterodactylAccess::class]], function () {
     Route::get('/{server}/list', 'FilemanagerController@getDirectoryListing')->name('api.app.user.files.list');
     Route::get('/{server}/content', 'FilemanagerController@getFileContents')->name('api.app.user.files.contents');
+    Route::post('/{server}/write', 'FilemanagerController@writeFileContent')->name('api.app.user.files.write');
 });
