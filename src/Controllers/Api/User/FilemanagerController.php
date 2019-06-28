@@ -35,11 +35,17 @@ class FilemanagerController extends Controller
     }
 
     public function getFileContents(GetFileContentsRequest $request) {
-        return Response::create(
-            $this->repository->setServer($request->getModel(Server::class))->getContent(
-                $request->get('file'), $this->config->get('pterodactyl.files.max_edit_size')
-            )
-        );
+	try {
+            $response =  Response::create(
+                $this->repository->setServer($request->getModel(Server::class))->getContent(
+                    $request->get('file'), $this->config->get('pterodactyl.files.max_edit_size')
+                )
+            );
+        } catch (\Exception $e) {
+            return response(null, 404);
+        }
+
+        #return $response;
     }
 
 }
