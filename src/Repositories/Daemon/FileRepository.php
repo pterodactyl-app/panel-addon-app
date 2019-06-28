@@ -23,4 +23,23 @@ class FileRepository extends Repository implements FileRepositoryInterface
             ]
         );
     }
+
+    /**
+     * Creates a new directory for the server in the given $path.
+     *
+     * @param string $name
+     * @param string $path
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function createFolder(string $name, string $path): ResponseInterface
+    {
+        return $this->getHttpClient()->request('POST', 'server/file/folder',
+            [
+                'json' => [
+                    'path' => $path.$name
+                ]
+            ]
+        );
+    }
+
 }

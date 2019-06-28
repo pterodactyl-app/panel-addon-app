@@ -11,6 +11,7 @@ use YWatchman\Panel_Console\Requests\ListFilesRequest;
 use YWatchman\Panel_Console\Requests\GetFileContentsRequest;
 use YWatchman\Panel_Console\Requests\WriteFileContentRequest;
 use YWatchman\Panel_Console\Requests\DeleteFileRequest;
+use YWatchman\Panel_Console\Requests\CreateFolderRequest;;
 use Pterodactyl\Models\Server;
 
 class FilemanagerController extends Controller
@@ -64,6 +65,20 @@ class FilemanagerController extends Controller
             ->setServer($request->getModel(Server::class))
             ->deleteFile($request->input('file')); // This function doesn't exist YET!
 
+        return response(null, 204);
+    }
+
+    /**
+     * Creates a new folder on the server.
+     *
+     * @param \Pterodactyl\Http\Requests\Api\Client\Servers\Files\CreateFolderRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createDirectory(CreateFolderRequest $request): Response
+    {
+        $this->repository
+            ->setServer($request->getModel(Server::class))
+            ->createFolder($request->input('name'), $request->input('directory', '/'));
         return response(null, 204);
     }
 

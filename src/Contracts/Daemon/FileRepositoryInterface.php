@@ -14,4 +14,13 @@ interface FileRepositoryInterface extends BaseRepositoryInterface
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function deleteFile(string $location): ResponseInterface;
+
+    /**
+     * Creates a new directory for the server in the given $path.
+     *
+     * @param string $name
+     * @param string $path
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function createFolder(string $name, string $path): ResponseInterface;
 }
