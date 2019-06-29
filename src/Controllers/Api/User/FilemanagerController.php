@@ -13,6 +13,7 @@ use YWatchman\Panel_Console\Requests\WriteFileContentRequest;
 use YWatchman\Panel_Console\Requests\DeleteFileRequest;
 use YWatchman\Panel_Console\Requests\CreateFolderRequest;;
 use Pterodactyl\Models\Server;
+use Exception;
 
 class FilemanagerController extends Controller
 {
@@ -33,7 +34,6 @@ class FilemanagerController extends Controller
             'contents' => $this->repository->setServer($request->getModel(Server::class))->getDirectory(
               $request->get('directory') ?? '/'
             ),
-            'editable' => $this->config->get('pterodactyl.files.editable', [])
         ]);
     }
 
@@ -44,7 +44,7 @@ class FilemanagerController extends Controller
                     $request->get('file'), $this->config->get('pterodactyl.files.max_edit_size')
                 )
             );
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response(null, 404);
         }
 
