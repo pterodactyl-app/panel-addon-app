@@ -30,16 +30,20 @@ class FilemanagerController extends Controller
     }
 
     public function getDirectoryListing(ListFilesRequest $request) {
-        return response()->json([
-            'contents' => $this->repository->setServer($request->getModel(Server::class))->getDirectory(
-              $request->get('directory') ?? '/'
-            ),
-        ]);
+        try {
+            return response()->json([
+                'contents' => $this->repository->setServer($request->getModel(Server::class))->getDirectory(
+                  $request->get('directory') ?? '/'
+                ),
+            ]);
+        } catch (Exception $e) {
+            return response(null, 404);
+        }
     }
 
     public function getFileContents(GetFileContentsRequest $request) {
 	try {
-            $response = Response::create(
+            return Response::create(
                 $this->repository->setServer($request->getModel(Server::class))->getContent(
                     $request->get('file'), $this->config->get('pterodactyl.files.max_edit_size')
                 )
@@ -47,8 +51,6 @@ class FilemanagerController extends Controller
         } catch (Exception $e) {
             return response(null, 404);
         }
-
-        return $response;
     }
 
     public function writeFileContent(WriteFileContentRequest $request) {
