@@ -1,4 +1,5 @@
 <?php
+
 namespace YWatchman\Panel_Console\Repositories\Daemon;
 
 use Psr\Http\Message\ResponseInterface;
@@ -11,6 +12,7 @@ class FileRepository extends Repository implements FileRepositoryInterface
      * Delete a file or folder for the server.
      *
      * @param string $location
+     *
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function deleteFile(string $location): ResponseInterface
@@ -29,6 +31,7 @@ class FileRepository extends Repository implements FileRepositoryInterface
      *
      * @param string $name
      * @param string $path
+     *
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function createFolder(string $name, string $path): ResponseInterface
@@ -36,10 +39,9 @@ class FileRepository extends Repository implements FileRepositoryInterface
         return $this->getHttpClient()->request('POST', 'server/file/folder',
             [
                 'json' => [
-                    'path' => $path.$name
-                ]
+                    'path' => $path.$name,
+                ],
             ]
         );
     }
-
 }

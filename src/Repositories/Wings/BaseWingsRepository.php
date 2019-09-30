@@ -1,9 +1,10 @@
 <?php
+
 namespace YWatchman\Panel_Console\Repositories\Wings;
 
 use GuzzleHttp\Client;
-use Pterodactyl\Repositories\Daemon\BaseRepository;
 use Pterodactyl\Contracts\Repository\Daemon\BaseRepositoryInterface;
+use Pterodactyl\Repositories\Daemon\BaseRepository;
 
 abstract class BaseWingsRepository extends BaseRepository implements BaseRepositoryInterface
 {
@@ -11,6 +12,7 @@ abstract class BaseWingsRepository extends BaseRepository implements BaseReposit
      * Return an instance of the Guzzle HTTP Client to be used for requests.
      *
      * @param array $headers
+     *
      * @return \GuzzleHttp\Client
      */
     public function getHttpClient(array $headers = []): Client
@@ -19,12 +21,13 @@ abstract class BaseWingsRepository extends BaseRepository implements BaseReposit
         // sound and does everything we need it to aside from provide the correct base URL
         // and authentication headers.
         $client = parent::getHttpClient($headers);
+
         return new Client(array_merge($client->getConfig(), [
             'base_uri' => $this->getNode()->getConnectionAddress(),
-            'headers' => [
-                'Authorization' => 'Bearer ' . ($this->getToken() ?? $this->getNode()->daemonSecret),
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
+            'headers'  => [
+                'Authorization' => 'Bearer '.($this->getToken() ?? $this->getNode()->daemonSecret),
+                'Accept'        => 'application/json',
+                'Content-Type'  => 'application/json',
             ],
         ]));
     }

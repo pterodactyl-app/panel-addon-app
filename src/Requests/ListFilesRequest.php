@@ -2,8 +2,8 @@
 
 namespace YWatchman\Panel_Console\Requests;
 
-use Pterodactyl\Models\Server;
 use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
+use Pterodactyl\Models\Server;
 
 class ListFilesRequest extends ClientApiRequest
 {
@@ -17,6 +17,7 @@ class ListFilesRequest extends ClientApiRequest
     {
         return $this->user()->can('list-files', $this->getModel(Server::class));
     }
+
     /**
      * @return array
      */

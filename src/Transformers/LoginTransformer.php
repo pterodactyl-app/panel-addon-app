@@ -2,13 +2,12 @@
 
 namespace YWatchman\Panel_Console\Transformers;
 
-use Pterodactyl\Transformers\Api\Client\BaseClientTransformer as BaseTransformer;
-use Pterodactyl\Models\User;
 use Illuminate\Support\Collection;
+use Pterodactyl\Models\User;
+use Pterodactyl\Transformers\Api\Client\BaseClientTransformer as BaseTransformer;
 
 class LoginTransformer extends BaseTransformer
 {
-
     /**
      * @return string
      */
@@ -21,7 +20,8 @@ class LoginTransformer extends BaseTransformer
      * Return a transformed console array.
      *
      * @param \Illuminate\Support\Collection $keys
-     * @param \Pterodactyl\Models\User $user
+     * @param \Pterodactyl\Models\User       $user
+     *
      * @return array
      */
     public function transform(Collection $keys, User $user): array
@@ -29,20 +29,20 @@ class LoginTransformer extends BaseTransformer
         $data = [];
         foreach ($keys as $key) {
             $data[] = (object) [
-                'memo' => $key->memo,
+                'memo'        => $key->memo,
                 'allowed_ips' => $key->allowed_ips,
-                'token' => $key->identifier . decrypt($key->token),
+                'token'       => $key->identifier.decrypt($key->token),
             ];
         }
 
         return [
             'object' => 'list',
-            'data' => $data,
-            'user' => (object) [
-                'name' => $user->name_first,
+            'data'   => $data,
+            'user'   => (object) [
+                'name'    => $user->name_first,
                 'surname' => $user->name_last,
-                'email' => $user->email
-            ]
+                'email'   => $user->email,
+            ],
         ];
     }
 }

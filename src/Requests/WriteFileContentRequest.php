@@ -2,7 +2,6 @@
 
 namespace YWatchman\Panel_Console\Requests;
 
-use YWatchman\Panel_Console\Requests\ClientPermissionsRequest;
 use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
 
 class WriteFileContentRequest extends ClientApiRequest implements ClientPermissionsRequest
