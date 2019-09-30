@@ -2,8 +2,8 @@
 
 namespace YWatchman\Panel_Console\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -22,14 +22,14 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         Route::prefix('/api/app/user')
-            ->namespace($this->namespace . '\Api\User')
-            ->group(__DIR__ . '/../Routes/api-app-auth.php');
+            ->namespace($this->namespace.'\Api\User')
+            ->group(__DIR__.'/../Routes/api-app-auth.php');
         Route::middleware(['api'])->prefix('/api/app/admin')
-            ->namespace($this->namespace . '\Api\Admin')
-            ->group(__DIR__ . '/../Routes/api-app-admin.php');
+            ->namespace($this->namespace.'\Api\Admin')
+            ->group(__DIR__.'/../Routes/api-app-admin.php');
 
         Route::middleware(['client-api'])->prefix('/api/app/user')
-            ->namespace($this->namespace . '\Api\User')
-            ->group(__DIR__ . '/../Routes/api-app-user.php');
+            ->namespace($this->namespace.'\Api\User')
+            ->group(__DIR__.'/../Routes/api-app-user.php');
     }
 }

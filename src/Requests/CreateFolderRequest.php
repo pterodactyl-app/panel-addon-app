@@ -2,8 +2,8 @@
 
 namespace YWatchman\Panel_Console\Requests;
 
-use Pterodactyl\Models\Server;
 use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
+use Pterodactyl\Models\Server;
 
 class CreateFolderRequest extends ClientApiRequest
 {
@@ -16,6 +16,7 @@ class CreateFolderRequest extends ClientApiRequest
     {
         return $this->user()->can('create-files', $this->getModel(Server::class));
     }
+
     /**
      * @return array
      */

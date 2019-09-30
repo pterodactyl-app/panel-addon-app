@@ -2,12 +2,11 @@
 
 namespace YWatchman\Panel_Console\Transformers;
 
-use Pterodactyl\Transformers\Api\Client\BaseClientTransformer as BaseTransformer;
 use Pterodactyl\Models\Server;
+use Pterodactyl\Transformers\Api\Client\BaseClientTransformer as BaseTransformer;
 
 class ConsoleTransformer extends BaseTransformer
 {
-
     /**
      * @return string
      */
@@ -20,21 +19,23 @@ class ConsoleTransformer extends BaseTransformer
      * Return a transformed console array.
      *
      * @param \Pterodactyl\Models\Server $server
-     * @return array
      *
      * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     *
+     * @return array
      */
     public function transform(Server $server): array
     {
         $token = request()->attributes->get('server_token');
-        $node = $server->node->fqdn . ':' . $server->node->daemonListen;
+        $node = $server->node->fqdn.':'.$server->node->daemonListen;
+
         return [
-            'id' => $server->getKey(),
+            'id'          => $server->getKey(),
             'external_id' => $server->external_id,
-            'identifier' => $server->uuid,
-            'name' => $server->name,
-            'daemon_key' => $token,
-            'node' => $node
+            'identifier'  => $server->uuid,
+            'name'        => $server->name,
+            'daemon_key'  => $token,
+            'node'        => $node,
         ];
     }
 }

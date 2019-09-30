@@ -3,14 +3,14 @@
 namespace YWatchman\Panel_Console\Controllers\Api\User;
 
 use Pterodactyl\Http\Controllers\Api\Client\ClientApiController as Controller;
-use Pterodactyl\Models\Server;
 use Pterodactyl\Http\Requests\Api\Client\Servers\GetServerRequest;
+use Pterodactyl\Models\Server;
 use YWatchman\Panel_Console\Transformers\ConsoleTransformer;
 
 class ConsoleController extends Controller
 {
-
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -20,5 +20,4 @@ class ConsoleController extends Controller
             ->transformWith($this->getTransformer(ConsoleTransformer::class))
             ->toArray();
     }
-
 }
